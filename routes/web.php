@@ -12,3 +12,4 @@
 */
 
 Route::get('/yiyuan', 'YiYuanApiController@saveApiData');
+Route::get('/', 'YiYuanApiController@index');

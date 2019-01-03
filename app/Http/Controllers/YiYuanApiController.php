@@ -27,45 +27,56 @@ class YiYuanApiController extends Controller
         $this->client = new Client();
     }
 
+    public function index()
+    {
+        $singleBus = Morebusinfo::paginate(20);
+        return response($singleBus);
+    }
+
     /**
      * @return \Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response
      * @throws \JsonMapper_Exception
      */
     public function saveApiData()
     {
-        $singleBus = Morebusinfo::paginate(20);
-//        foreach ($singleBus as $value) {
-//            $busNo = $value->busno;
-//            $res = $this->feachYIYuanApi($busNo);
-//            $content = $res->getBody()->getContents();
-//            Log::info($content);
-//            $busInfoJSONModel = json_decode($content);
-//            $soulistbody = $busInfoJSONModel->showapi_res_body;
-//            if (isset($soulistbody->ret_code)){
-//                if ($soulistbody->ret_code != '-1'){
-//                    $soulistArr = $soulistbody->soulist;
-//                    if (empty($soulistArr)){
-//                        continue;
-//                    }
-//                    foreach ($soulistArr as $soulist) {
-//                        $lineName = $soulist->lineName;
-//                        $moreBusInfo = Morebusinfo::where('busLineName', $lineName)->first();
-//                        if (!$moreBusInfo) {
-//                            $moreBusInfo = new Morebusinfo();
-//                        }
-//                        $moreBusInfo->busno = $busNo;
-//                        $moreBusInfo->busId = $soulist->_id;
-//                        $moreBusInfo->busLineName = $lineName;
-//                        $moreBusInfo->busLineTypeName = $soulist->lineTypeName;
-//                        $moreBusInfo->save();
-//                    }
-//                }
-//            }
-//        }
-        return response($singleBus);
+        $this->serverToYiYuanRoute();
+        return response('ok');
     }
 
-    private function feachYIYuanApi($lineName)
+    private function serverToYiYuanRoute()
+    {
+        $singleBus = BusInfo::paginate(10);
+        foreach ($singleBus as $value) {
+            $busNo = $value->busno;
+            $res = $this->feachYIYuanRouteApi($busNo);
+            $content = $res->getBody()->getContents();
+            Log::info($content);
+            $busInfoJSONModel = json_decode($content);
+            $soulistbody = $busInfoJSONModel->showapi_res_body;
+            if (isset($soulistbody->ret_code)) {
+                if ($soulistbody->ret_code != '-1') {
+                    $soulistArr = $soulistbody->soulist;
+                    if (empty($soulistArr)) {
+                        continue;
+                    }
+                    foreach ($soulistArr as $soulist) {
+                        $lineName = $soulist->lineName;
+                        $moreBusInfo = Morebusinfo::where('busLineName', $lineName)->first();
+                        if (!$moreBusInfo) {
+                            $moreBusInfo = new Morebusinfo();
+                        }
+                        $moreBusInfo->busno = $busNo;
+                        $moreBusInfo->busId = $soulist->_id;
+                        $moreBusInfo->busLineName = $lineName;
+                        $moreBusInfo->busLineTypeName = $soulist->lineTypeName;
+                        $moreBusInfo->save();
+                    }
+                }
+            }
+        }
+    }
+
+    private function feachYIYuanRouteApi($lineName)
     {
         $this->paramArr['lineName'] = $lineName;
         $this->paramArr['curPage'] = $this->curPage;
