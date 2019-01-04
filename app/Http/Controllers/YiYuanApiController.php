@@ -30,7 +30,7 @@ class YiYuanApiController extends Controller
 
     public function index()
     {
-        $busInfo = Morebusinfo::paginate(20);
+        $busInfo = Morebusinfo::paginate(10);
         foreach ($busInfo as $item) {
             $item->busInfoDetail;
         }
