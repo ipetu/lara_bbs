@@ -35,4 +35,8 @@ class Morebusinfo extends Model
     public function busInfo(){
         return $this->belongsTo(BusInfo::class,'busno','busno');
     }
+
+    public function busInfoDetail(){
+        return $this->hasMany(BusInfoDetail::class,'busId','busId');
+    }
 }

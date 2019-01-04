@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\JsonModel\BusInfoWithJSONModel;
 use App\models\BusInfo;
+use App\models\BusInfoDetail;
 use App\models\Morebusinfo;
 use DavidHoeck\LaravelJsonMapper\JsonMapper;
 use Illuminate\Http\Request;
@@ -29,18 +30,88 @@ class YiYuanApiController extends Controller
 
     public function index()
     {
-        $singleBus = Morebusinfo::paginate(20);
-        return response($singleBus);
+        $busInfo = Morebusinfo::paginate(20);
+        foreach ($busInfo as $item) {
+            $item->busInfoDetail;
+        }
+        return response($busInfo);
     }
 
     /**
      * @return \Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response
      * @throws \JsonMapper_Exception
      */
-    public function saveApiData()
+    public function saveApi()
     {
         $this->serverToYiYuanRoute();
         return response('ok');
+    }
+
+    public function saveDetailApi()
+    {
+        $moreBusInfoItems = Morebusinfo::paginate(1)->items();
+        $content = '';
+        foreach ($moreBusInfoItems as $item) {
+            $bound = 0;
+            $busId = $item->busId;
+            $res = $this->feachYIYuanRouteDetailApi($busId);
+            $content = $res->getBody()->getContents();
+            Log::info($content);
+            return response($content);
+            $busDetailInfoJSONModel = json_decode($content);
+            $resCode = $busDetailInfoJSONModel->showapi_res_code;
+            $showApiResBody = $busDetailInfoJSONModel->showapi_res_body;
+            if (isset($resCode) && $resCode == 0) {
+                $busSite = $showApiResBody->busSite;
+                $busLineList = $busSite->sitesLineList;
+                $lastUpTime = $busSite->lastUpTime;
+                $cityEngName = $busSite->cityEngName;
+                $cityName = $busSite->cityName;
+                $lineName = $busSite->lineName;
+                $company = $busSite->company;
+                $lineTypeName = $busSite->lineTypeName;
+                $proName = $busSite->proName;
+                $siteTitleName = $busSite->siteTitleName;
+                $runTime = $busSite->runtime;
+                $price = $busSite->price;
+                if (is_array($busLineList)) {
+                    foreach ($busLineList as $item) {
+                        $bound = $bound+1;
+                        $lineTitle = $item->lineTitle;
+                        $lineSiteCount = $item->lineSiteCount;
+                        $lineSiteList = $item->lineSiteList;
+                        if (is_array($lineSiteList)) {
+                            foreach ($lineSiteList as $item) {
+                                $lineSiteName = $item->lineSiteName;
+                                $lineSiteId = $item->lineSiteId;
+                                $lineSiteNum = $item->lineSiteNum;
+                                $businfoDetails = new BusInfoDetail();
+                                $businfoDetails->setBusId($busId);
+                                $businfoDetails->setBound($bound);
+                                $businfoDetails->setCityEngName($cityEngName);
+                                $businfoDetails->setCityName($cityName);
+                                $businfoDetails->setCompany($company);
+                                $businfoDetails->setLastUpTime($lastUpTime);
+                                $businfoDetails->setLineName($lineName);
+                                $businfoDetails->setLineSiteCount($lineSiteCount);
+                                $businfoDetails->setLineTitle($lineTitle);
+                                $businfoDetails->setPrice($price);
+                                $businfoDetails->setRunTime($runTime);
+                                $businfoDetails->setSiteTitleName($siteTitleName);
+                                $businfoDetails->setLineTitle($lineTitle);
+                                $businfoDetails->setLineTypeName($lineTypeName);
+                                $businfoDetails->setProName($proName);
+                                $businfoDetails->setLineSiteName($lineSiteName);
+                                $businfoDetails->setLineSiteId($lineSiteId);
+                                $businfoDetails->setLineSiteNum($lineSiteNum);
+                                $businfoDetails->save();
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return response($moreBusInfoItems);
     }
 
     private function serverToYiYuanRoute()
@@ -82,6 +153,15 @@ class YiYuanApiController extends Controller
         $this->paramArr['curPage'] = $this->curPage;
         $param = $this->createParam($this->paramArr, $this->showapi_secret);
         $url = 'http://route.showapi.com/1463-3?' . $param;
+        $res = $this->client->request('get', $url, $this->headers);
+        return $res;
+    }
+
+    private function feachYIYuanRouteDetailApi($lineId)
+    {
+        $this->paramArr['lineId'] = $lineId;
+        $param = $this->createParam($this->paramArr, $this->showapi_secret);
+        $url = 'http://route.showapi.com/1463-4?' . $param;
         $res = $this->client->request('get', $url, $this->headers);
         return $res;
     }

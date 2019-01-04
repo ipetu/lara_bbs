@@ -14,7 +14,8 @@
         "guzzlehttp/guzzle": "^6.3",
         "laravel/framework": "5.7.*",
         "laravel/tinker": "^1.0",
-        "netresearch/jsonmapper": "^1.4"
+        "netresearch/jsonmapper": "^1.4",
+        "jpush/jpush": "^3.5"
     },
     "require-dev": {
         "barryvdh/laravel-ide-helper": "^2.5",

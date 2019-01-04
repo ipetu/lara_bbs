@@ -11,5 +11,7 @@
 |
 */
 
-Route::get('/yiyuan', 'YiYuanApiController@saveApiData');
+Route::get('/businfo', 'YiYuanApiController@saveApi');
+Route::get('/busdetail', 'YiYuanApiController@saveDetailApi');
 Route::get('/', 'YiYuanApiController@index');
+Route::get('/push','JiGuangPushController@index')->name('push');
