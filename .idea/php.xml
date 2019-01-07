@@ -108,6 +108,7 @@
       <path value="$PROJECT_DIR$/vendor/league/fractal" />
       <path value="$PROJECT_DIR$/vendor/dingo/blueprint" />
       <path value="$PROJECT_DIR$/vendor/namshi/jose" />
+      <path value="$PROJECT_DIR$/vendor/liyu/dingo-serializer-switch" />
     </include_path>
   </component>
   <component name="PhpInterpreters">

@@ -13,6 +13,11 @@ class HKBusRouteController extends Controller
     //
     use Helpers;
 
+    public function __construct()
+    {
+        $this->middleware(['serializer:array']);
+    }
+
     public function index(){
         $moreBusInfo = Morebusinfo::paginate(20)->getCollection();
         return $this->response->collection($moreBusInfo,new SingleMoreBusInfoTransformer());

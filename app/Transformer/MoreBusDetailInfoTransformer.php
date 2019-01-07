@@ -20,9 +20,9 @@ class MoreBusDetailInfoTransformer extends TransformerAbstract
     public function transform(BusInfoDetail $busInfoDetail)
     {
         return [
-            'busId' => $busInfoDetail->busId
-//            'busLineName' => $busInfoDetail->busLineName,
-//            'busLineTypeName'=>$busInfoDetail->busLineTypeName
+            'busId' => $busInfoDetail->busId,
+            'busLineName' => $busInfoDetail->getSiteTitleName(),
+            'busLineTypeName'=>$busInfoDetail->getCityName()
         ];
     }
 

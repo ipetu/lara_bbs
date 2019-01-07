@@ -3,7 +3,7 @@
 
 /**
  * A helper file for Laravel 5, to provide autocomplete information to your IDE
- * Generated for Laravel 5.7.19 on 2019-01-04 17:56:34.
+ * Generated for Laravel 5.7.19 on 2019-01-08 00:06:59.
  *
  * This file should not be included in your code, only analyzed by your IDE!
  *
@@ -13368,6 +13368,526 @@ namespace Illuminate\Support\Facades {
  
 }
 
+namespace Tymon\JWTAuth\Facades { 
+
+    /**
+     * 
+     *
+     */ 
+    class JWTAuth {
+        
+        /**
+         * Attempt to authenticate the user and return the token.
+         *
+         * @param array $credentials
+         * @return false|string 
+         * @static 
+         */ 
+        public static function attempt($credentials)
+        {
+            return \Tymon\JWTAuth\JWTAuth::attempt($credentials);
+        }
+        
+        /**
+         * Authenticate a user via a token.
+         *
+         * @return \Tymon\JWTAuth\Contracts\JWTSubject|false 
+         * @static 
+         */ 
+        public static function authenticate()
+        {
+            return \Tymon\JWTAuth\JWTAuth::authenticate();
+        }
+        
+        /**
+         * Alias for authenticate().
+         *
+         * @return \Tymon\JWTAuth\Contracts\JWTSubject|false 
+         * @static 
+         */ 
+        public static function toUser()
+        {
+            return \Tymon\JWTAuth\JWTAuth::toUser();
+        }
+        
+        /**
+         * Get the authenticated user.
+         *
+         * @return \Tymon\JWTAuth\Contracts\JWTSubject 
+         * @static 
+         */ 
+        public static function user()
+        {
+            return \Tymon\JWTAuth\JWTAuth::user();
+        }
+        
+        /**
+         * Generate a token for a given subject.
+         *
+         * @param \Tymon\JWTAuth\Contracts\JWTSubject $subject
+         * @return string 
+         * @static 
+         */ 
+        public static function fromSubject($subject)
+        {
+            //Method inherited from \Tymon\JWTAuth\JWT            
+            return \Tymon\JWTAuth\JWTAuth::fromSubject($subject);
+        }
+        
+        /**
+         * Alias to generate a token for a given user.
+         *
+         * @param \Tymon\JWTAuth\Contracts\JWTSubject $user
+         * @return string 
+         * @static 
+         */ 
+        public static function fromUser($user)
+        {
+            //Method inherited from \Tymon\JWTAuth\JWT            
+            return \Tymon\JWTAuth\JWTAuth::fromUser($user);
+        }
+        
+        /**
+         * Refresh an expired token.
+         *
+         * @param bool $forceForever
+         * @param bool $resetClaims
+         * @return string 
+         * @static 
+         */ 
+        public static function refresh($forceForever = false, $resetClaims = false)
+        {
+            //Method inherited from \Tymon\JWTAuth\JWT            
+            return \Tymon\JWTAuth\JWTAuth::refresh($forceForever, $resetClaims);
+        }
+        
+        /**
+         * Invalidate a token (add it to the blacklist).
+         *
+         * @param bool $forceForever
+         * @return $this 
+         * @static 
+         */ 
+        public static function invalidate($forceForever = false)
+        {
+            //Method inherited from \Tymon\JWTAuth\JWT            
+            return \Tymon\JWTAuth\JWTAuth::invalidate($forceForever);
+        }
+        
+        /**
+         * Alias to get the payload, and as a result checks that
+         * the token is valid i.e. not expired or blacklisted.
+         *
+         * @throws \Tymon\JWTAuth\Exceptions\JWTException
+         * @return \Tymon\JWTAuth\Payload 
+         * @static 
+         */ 
+        public static function checkOrFail()
+        {
+            //Method inherited from \Tymon\JWTAuth\JWT            
+            return \Tymon\JWTAuth\JWTAuth::checkOrFail();
+        }
+        
+        /**
+         * Check that the token is valid.
+         *
+         * @param bool $getPayload
+         * @return \Tymon\JWTAuth\Payload|bool 
+         * @static 
+         */ 
+        public static function check($getPayload = false)
+        {
+            //Method inherited from \Tymon\JWTAuth\JWT            
+            return \Tymon\JWTAuth\JWTAuth::check($getPayload);
+        }
+        
+        /**
+         * Get the token.
+         *
+         * @return \Tymon\JWTAuth\Token|null 
+         * @static 
+         */ 
+        public static function getToken()
+        {
+            //Method inherited from \Tymon\JWTAuth\JWT            
+            return \Tymon\JWTAuth\JWTAuth::getToken();
+        }
+        
+        /**
+         * Parse the token from the request.
+         *
+         * @throws \Tymon\JWTAuth\Exceptions\JWTException
+         * @return $this 
+         * @static 
+         */ 
+        public static function parseToken()
+        {
+            //Method inherited from \Tymon\JWTAuth\JWT            
+            return \Tymon\JWTAuth\JWTAuth::parseToken();
+        }
+        
+        /**
+         * Get the raw Payload instance.
+         *
+         * @return \Tymon\JWTAuth\Payload 
+         * @static 
+         */ 
+        public static function getPayload()
+        {
+            //Method inherited from \Tymon\JWTAuth\JWT            
+            return \Tymon\JWTAuth\JWTAuth::getPayload();
+        }
+        
+        /**
+         * Alias for getPayload().
+         *
+         * @return \Tymon\JWTAuth\Payload 
+         * @static 
+         */ 
+        public static function payload()
+        {
+            //Method inherited from \Tymon\JWTAuth\JWT            
+            return \Tymon\JWTAuth\JWTAuth::payload();
+        }
+        
+        /**
+         * Convenience method to get a claim value.
+         *
+         * @param string $claim
+         * @return mixed 
+         * @static 
+         */ 
+        public static function getClaim($claim)
+        {
+            //Method inherited from \Tymon\JWTAuth\JWT            
+            return \Tymon\JWTAuth\JWTAuth::getClaim($claim);
+        }
+        
+        /**
+         * Create a Payload instance.
+         *
+         * @param \Tymon\JWTAuth\Contracts\JWTSubject $subject
+         * @return \Tymon\JWTAuth\Payload 
+         * @static 
+         */ 
+        public static function makePayload($subject)
+        {
+            //Method inherited from \Tymon\JWTAuth\JWT            
+            return \Tymon\JWTAuth\JWTAuth::makePayload($subject);
+        }
+        
+        /**
+         * Check if the subject model matches the one saved in the token.
+         *
+         * @param string|object $model
+         * @return bool 
+         * @static 
+         */ 
+        public static function checkSubjectModel($model)
+        {
+            //Method inherited from \Tymon\JWTAuth\JWT            
+            return \Tymon\JWTAuth\JWTAuth::checkSubjectModel($model);
+        }
+        
+        /**
+         * Set the token.
+         *
+         * @param \Tymon\JWTAuth\Token|string $token
+         * @return $this 
+         * @static 
+         */ 
+        public static function setToken($token)
+        {
+            //Method inherited from \Tymon\JWTAuth\JWT            
+            return \Tymon\JWTAuth\JWTAuth::setToken($token);
+        }
+        
+        /**
+         * Unset the current token.
+         *
+         * @return $this 
+         * @static 
+         */ 
+        public static function unsetToken()
+        {
+            //Method inherited from \Tymon\JWTAuth\JWT            
+            return \Tymon\JWTAuth\JWTAuth::unsetToken();
+        }
+        
+        /**
+         * Set the request instance.
+         *
+         * @param \Illuminate\Http\Request $request
+         * @return $this 
+         * @static 
+         */ 
+        public static function setRequest($request)
+        {
+            //Method inherited from \Tymon\JWTAuth\JWT            
+            return \Tymon\JWTAuth\JWTAuth::setRequest($request);
+        }
+        
+        /**
+         * Set whether the subject should be "locked".
+         *
+         * @param bool $lock
+         * @return $this 
+         * @static 
+         */ 
+        public static function lockSubject($lock)
+        {
+            //Method inherited from \Tymon\JWTAuth\JWT            
+            return \Tymon\JWTAuth\JWTAuth::lockSubject($lock);
+        }
+        
+        /**
+         * Get the Manager instance.
+         *
+         * @return \Tymon\JWTAuth\Manager 
+         * @static 
+         */ 
+        public static function manager()
+        {
+            //Method inherited from \Tymon\JWTAuth\JWT            
+            return \Tymon\JWTAuth\JWTAuth::manager();
+        }
+        
+        /**
+         * Get the Parser instance.
+         *
+         * @return \Tymon\JWTAuth\Http\Parser\Parser 
+         * @static 
+         */ 
+        public static function parser()
+        {
+            //Method inherited from \Tymon\JWTAuth\JWT            
+            return \Tymon\JWTAuth\JWTAuth::parser();
+        }
+        
+        /**
+         * Get the Payload Factory.
+         *
+         * @return \Tymon\JWTAuth\Factory 
+         * @static 
+         */ 
+        public static function factory()
+        {
+            //Method inherited from \Tymon\JWTAuth\JWT            
+            return \Tymon\JWTAuth\JWTAuth::factory();
+        }
+        
+        /**
+         * Get the Blacklist.
+         *
+         * @return \Tymon\JWTAuth\Blacklist 
+         * @static 
+         */ 
+        public static function blacklist()
+        {
+            //Method inherited from \Tymon\JWTAuth\JWT            
+            return \Tymon\JWTAuth\JWTAuth::blacklist();
+        }
+        
+        /**
+         * Set the custom claims.
+         *
+         * @param array $customClaims
+         * @return $this 
+         * @static 
+         */ 
+        public static function customClaims($customClaims)
+        {
+            //Method inherited from \Tymon\JWTAuth\JWT            
+            return \Tymon\JWTAuth\JWTAuth::customClaims($customClaims);
+        }
+        
+        /**
+         * Alias to set the custom claims.
+         *
+         * @param array $customClaims
+         * @return $this 
+         * @static 
+         */ 
+        public static function claims($customClaims)
+        {
+            //Method inherited from \Tymon\JWTAuth\JWT            
+            return \Tymon\JWTAuth\JWTAuth::claims($customClaims);
+        }
+        
+        /**
+         * Get the custom claims.
+         *
+         * @return array 
+         * @static 
+         */ 
+        public static function getCustomClaims()
+        {
+            //Method inherited from \Tymon\JWTAuth\JWT            
+            return \Tymon\JWTAuth\JWTAuth::getCustomClaims();
+        }
+         
+    }
+
+    /**
+     * 
+     *
+     */ 
+    class JWTFactory {
+        
+        /**
+         * Create the Payload instance.
+         *
+         * @param bool $resetClaims
+         * @return \Tymon\JWTAuth\Payload 
+         * @static 
+         */ 
+        public static function make($resetClaims = false)
+        {
+            return \Tymon\JWTAuth\Factory::make($resetClaims);
+        }
+        
+        /**
+         * Empty the claims collection.
+         *
+         * @return $this 
+         * @static 
+         */ 
+        public static function emptyClaims()
+        {
+            return \Tymon\JWTAuth\Factory::emptyClaims();
+        }
+        
+        /**
+         * Build and get the Claims Collection.
+         *
+         * @return \Tymon\JWTAuth\Claims\Collection 
+         * @static 
+         */ 
+        public static function buildClaimsCollection()
+        {
+            return \Tymon\JWTAuth\Factory::buildClaimsCollection();
+        }
+        
+        /**
+         * Get a Payload instance with a claims collection.
+         *
+         * @param \Tymon\JWTAuth\Claims\Collection $claims
+         * @return \Tymon\JWTAuth\Payload 
+         * @static 
+         */ 
+        public static function withClaims($claims)
+        {
+            return \Tymon\JWTAuth\Factory::withClaims($claims);
+        }
+        
+        /**
+         * Set the default claims to be added to the Payload.
+         *
+         * @param array $claims
+         * @return $this 
+         * @static 
+         */ 
+        public static function setDefaultClaims($claims)
+        {
+            return \Tymon\JWTAuth\Factory::setDefaultClaims($claims);
+        }
+        
+        /**
+         * Helper to set the ttl.
+         *
+         * @param int $ttl
+         * @return $this 
+         * @static 
+         */ 
+        public static function setTTL($ttl)
+        {
+            return \Tymon\JWTAuth\Factory::setTTL($ttl);
+        }
+        
+        /**
+         * Helper to get the ttl.
+         *
+         * @return int 
+         * @static 
+         */ 
+        public static function getTTL()
+        {
+            return \Tymon\JWTAuth\Factory::getTTL();
+        }
+        
+        /**
+         * Get the default claims.
+         *
+         * @return array 
+         * @static 
+         */ 
+        public static function getDefaultClaims()
+        {
+            return \Tymon\JWTAuth\Factory::getDefaultClaims();
+        }
+        
+        /**
+         * Get the PayloadValidator instance.
+         *
+         * @return \Tymon\JWTAuth\Validators\PayloadValidator 
+         * @static 
+         */ 
+        public static function validator()
+        {
+            return \Tymon\JWTAuth\Factory::validator();
+        }
+        
+        /**
+         * Set the custom claims.
+         *
+         * @param array $customClaims
+         * @return $this 
+         * @static 
+         */ 
+        public static function customClaims($customClaims)
+        {
+            return \Tymon\JWTAuth\Factory::customClaims($customClaims);
+        }
+        
+        /**
+         * Alias to set the custom claims.
+         *
+         * @param array $customClaims
+         * @return $this 
+         * @static 
+         */ 
+        public static function claims($customClaims)
+        {
+            return \Tymon\JWTAuth\Factory::claims($customClaims);
+        }
+        
+        /**
+         * Get the custom claims.
+         *
+         * @return array 
+         * @static 
+         */ 
+        public static function getCustomClaims()
+        {
+            return \Tymon\JWTAuth\Factory::getCustomClaims();
+        }
+        
+        /**
+         * Set the refresh flow flag.
+         *
+         * @param bool $refreshFlow
+         * @return $this 
+         * @static 
+         */ 
+        public static function setRefreshFlow($refreshFlow = true)
+        {
+            return \Tymon\JWTAuth\Factory::setRefreshFlow($refreshFlow);
+        }
+         
+    }
+ 
+}
+
 namespace Dingo\Api\Facade { 
 
     /**
@@ -13692,165 +14212,431 @@ namespace Dingo\Api\Facade {
         }
          
     }
- 
-}
-
-namespace Tymon\JWTAuth\Facades { 
 
     /**
      * 
      *
      */ 
-    class JWTFactory {
+    class Route {
         
         /**
-         * Create the Payload instance.
+         * An alias for calling the group method, allows a more fluent API
+         * for registering a new API version group with optional
+         * attributes and a required callback.
+         * 
+         * This method can be called without the third parameter, however,
+         * the callback should always be the last parameter.
          *
-         * @param bool $resetClaims
-         * @return \Tymon\JWTAuth\Payload 
+         * @param string $version
+         * @param array|callable $second
+         * @param callable $third
+         * @return void 
          * @static 
          */ 
-        public static function make($resetClaims = false)
+        public static function version($version, $second, $third = null)
         {
-            return \Tymon\JWTAuth\Factory::make($resetClaims);
+            \Dingo\Api\Routing\Router::version($version, $second, $third);
         }
         
         /**
-         * Empty the claims collection.
+         * Create a new route group.
          *
-         * @return $this 
+         * @param array $attributes
+         * @param callable $callback
+         * @return void 
          * @static 
          */ 
-        public static function emptyClaims()
+        public static function group($attributes, $callback)
         {
-            return \Tymon\JWTAuth\Factory::emptyClaims();
+            \Dingo\Api\Routing\Router::group($attributes, $callback);
         }
         
         /**
-         * Build and get the Claims Collection.
+         * Create a new GET route.
          *
-         * @return \Tymon\JWTAuth\Claims\Collection 
+         * @param string $uri
+         * @param array|string|callable $action
+         * @return mixed 
          * @static 
          */ 
-        public static function buildClaimsCollection()
+        public static function get($uri, $action)
         {
-            return \Tymon\JWTAuth\Factory::buildClaimsCollection();
+            return \Dingo\Api\Routing\Router::get($uri, $action);
         }
         
         /**
-         * Get a Payload instance with a claims collection.
+         * Create a new POST route.
          *
-         * @param \Tymon\JWTAuth\Claims\Collection $claims
-         * @return \Tymon\JWTAuth\Payload 
+         * @param string $uri
+         * @param array|string|callable $action
+         * @return mixed 
          * @static 
          */ 
-        public static function withClaims($claims)
+        public static function post($uri, $action)
         {
-            return \Tymon\JWTAuth\Factory::withClaims($claims);
+            return \Dingo\Api\Routing\Router::post($uri, $action);
         }
         
         /**
-         * Set the default claims to be added to the Payload.
+         * Create a new PUT route.
          *
-         * @param array $claims
-         * @return $this 
+         * @param string $uri
+         * @param array|string|callable $action
+         * @return mixed 
          * @static 
          */ 
-        public static function setDefaultClaims($claims)
+        public static function put($uri, $action)
         {
-            return \Tymon\JWTAuth\Factory::setDefaultClaims($claims);
+            return \Dingo\Api\Routing\Router::put($uri, $action);
         }
         
         /**
-         * Helper to set the ttl.
+         * Create a new PATCH route.
          *
-         * @param int $ttl
-         * @return $this 
+         * @param string $uri
+         * @param array|string|callable $action
+         * @return mixed 
          * @static 
          */ 
-        public static function setTTL($ttl)
+        public static function patch($uri, $action)
         {
-            return \Tymon\JWTAuth\Factory::setTTL($ttl);
+            return \Dingo\Api\Routing\Router::patch($uri, $action);
         }
         
         /**
-         * Helper to get the ttl.
+         * Create a new DELETE route.
+         *
+         * @param string $uri
+         * @param array|string|callable $action
+         * @return mixed 
+         * @static 
+         */ 
+        public static function delete($uri, $action)
+        {
+            return \Dingo\Api\Routing\Router::delete($uri, $action);
+        }
+        
+        /**
+         * Create a new OPTIONS route.
+         *
+         * @param string $uri
+         * @param array|string|callable $action
+         * @return mixed 
+         * @static 
+         */ 
+        public static function options($uri, $action)
+        {
+            return \Dingo\Api\Routing\Router::options($uri, $action);
+        }
+        
+        /**
+         * Create a new route that responding to all verbs.
+         *
+         * @param string $uri
+         * @param array|string|callable $action
+         * @return mixed 
+         * @static 
+         */ 
+        public static function any($uri, $action)
+        {
+            return \Dingo\Api\Routing\Router::any($uri, $action);
+        }
+        
+        /**
+         * Create a new route with the given verbs.
+         *
+         * @param array|string $methods
+         * @param string $uri
+         * @param array|string|callable $action
+         * @return mixed 
+         * @static 
+         */ 
+        public static function match($methods, $uri, $action)
+        {
+            return \Dingo\Api\Routing\Router::match($methods, $uri, $action);
+        }
+        
+        /**
+         * Register an array of resources.
+         *
+         * @param array $resources
+         * @return void 
+         * @static 
+         */ 
+        public static function resources($resources)
+        {
+            \Dingo\Api\Routing\Router::resources($resources);
+        }
+        
+        /**
+         * Register a resource controller.
+         *
+         * @param string $name
+         * @param string $controller
+         * @param array $options
+         * @return void 
+         * @static 
+         */ 
+        public static function resource($name, $controller, $options = array())
+        {
+            \Dingo\Api\Routing\Router::resource($name, $controller, $options);
+        }
+        
+        /**
+         * Add a route to the routing adapter.
+         *
+         * @param string|array $methods
+         * @param string $uri
+         * @param string|array|callable $action
+         * @return mixed 
+         * @static 
+         */ 
+        public static function addRoute($methods, $uri, $action)
+        {
+            return \Dingo\Api\Routing\Router::addRoute($methods, $uri, $action);
+        }
+        
+        /**
+         * Dispatch a request via the adapter.
+         *
+         * @param \Dingo\Api\Http\Request $request
+         * @throws \Exception
+         * @return \Dingo\Api\Http\Response 
+         * @static 
+         */ 
+        public static function dispatch($request)
+        {
+            return \Dingo\Api\Routing\Router::dispatch($request);
+        }
+        
+        /**
+         * Gather the middleware for the given route.
+         *
+         * @param mixed $route
+         * @return array 
+         * @static 
+         */ 
+        public static function gatherRouteMiddlewares($route)
+        {
+            return \Dingo\Api\Routing\Router::gatherRouteMiddlewares($route);
+        }
+        
+        /**
+         * Set the conditional request.
+         *
+         * @param bool $conditionalRequest
+         * @return void 
+         * @static 
+         */ 
+        public static function setConditionalRequest($conditionalRequest)
+        {
+            \Dingo\Api\Routing\Router::setConditionalRequest($conditionalRequest);
+        }
+        
+        /**
+         * Get the current request instance.
+         *
+         * @return \Dingo\Api\Http\Request 
+         * @static 
+         */ 
+        public static function getCurrentRequest()
+        {
+            return \Dingo\Api\Routing\Router::getCurrentRequest();
+        }
+        
+        /**
+         * Get the current route instance.
+         *
+         * @return \Dingo\Api\Routing\Route 
+         * @static 
+         */ 
+        public static function getCurrentRoute()
+        {
+            return \Dingo\Api\Routing\Router::getCurrentRoute();
+        }
+        
+        /**
+         * Get the currently dispatched route instance.
+         *
+         * @return \Illuminate\Routing\Route 
+         * @static 
+         */ 
+        public static function current()
+        {
+            return \Dingo\Api\Routing\Router::current();
+        }
+        
+        /**
+         * Create a new route instance from an adapter route.
+         *
+         * @param array|\Illuminate\Routing\Route $route
+         * @return \Dingo\Api\Routing\Route 
+         * @static 
+         */ 
+        public static function createRoute($route)
+        {
+            return \Dingo\Api\Routing\Router::createRoute($route);
+        }
+        
+        /**
+         * Set the current route instance.
+         *
+         * @param \Dingo\Api\Routing\Route $route
+         * @return void 
+         * @static 
+         */ 
+        public static function setCurrentRoute($route)
+        {
+            \Dingo\Api\Routing\Router::setCurrentRoute($route);
+        }
+        
+        /**
+         * Determine if the router has a group stack.
+         *
+         * @return bool 
+         * @static 
+         */ 
+        public static function hasGroupStack()
+        {
+            return \Dingo\Api\Routing\Router::hasGroupStack();
+        }
+        
+        /**
+         * Get the prefix from the last group on the stack.
+         *
+         * @return string 
+         * @static 
+         */ 
+        public static function getLastGroupPrefix()
+        {
+            return \Dingo\Api\Routing\Router::getLastGroupPrefix();
+        }
+        
+        /**
+         * Get all routes registered on the adapter.
+         *
+         * @param string $version
+         * @return mixed 
+         * @static 
+         */ 
+        public static function getRoutes($version = null)
+        {
+            return \Dingo\Api\Routing\Router::getRoutes($version);
+        }
+        
+        /**
+         * Get the raw adapter routes.
+         *
+         * @return array 
+         * @static 
+         */ 
+        public static function getAdapterRoutes()
+        {
+            return \Dingo\Api\Routing\Router::getAdapterRoutes();
+        }
+        
+        /**
+         * Set the raw adapter routes.
+         *
+         * @param array $routes
+         * @return void 
+         * @static 
+         */ 
+        public static function setAdapterRoutes($routes)
+        {
+            \Dingo\Api\Routing\Router::setAdapterRoutes($routes);
+        }
+        
+        /**
+         * Get the number of routes dispatched.
          *
          * @return int 
          * @static 
          */ 
-        public static function getTTL()
+        public static function getRoutesDispatched()
         {
-            return \Tymon\JWTAuth\Factory::getTTL();
+            return \Dingo\Api\Routing\Router::getRoutesDispatched();
         }
         
         /**
-         * Get the default claims.
+         * Determine if the router has dispatched any routes.
          *
-         * @return array 
+         * @return bool 
          * @static 
          */ 
-        public static function getDefaultClaims()
+        public static function hasDispatchedRoutes()
         {
-            return \Tymon\JWTAuth\Factory::getDefaultClaims();
+            return \Dingo\Api\Routing\Router::hasDispatchedRoutes();
         }
         
         /**
-         * Get the PayloadValidator instance.
+         * Get the current route name.
          *
-         * @return \Tymon\JWTAuth\Validators\PayloadValidator 
+         * @return string|null 
          * @static 
          */ 
-        public static function validator()
+        public static function currentRouteName()
         {
-            return \Tymon\JWTAuth\Factory::validator();
+            return \Dingo\Api\Routing\Router::currentRouteName();
         }
         
         /**
-         * Set the custom claims.
+         * Alias for the "currentRouteNamed" method.
          *
-         * @param array $customClaims
-         * @return $this 
+         * @param mixed  string
+         * @return bool 
          * @static 
          */ 
-        public static function customClaims($customClaims)
+        public static function is()
         {
-            return \Tymon\JWTAuth\Factory::customClaims($customClaims);
+            return \Dingo\Api\Routing\Router::is();
         }
         
         /**
-         * Alias to set the custom claims.
+         * Determine if the current route matches a given name.
          *
-         * @param array $customClaims
-         * @return $this 
+         * @param string $name
+         * @return bool 
          * @static 
          */ 
-        public static function claims($customClaims)
+        public static function currentRouteNamed($name)
         {
-            return \Tymon\JWTAuth\Factory::claims($customClaims);
+            return \Dingo\Api\Routing\Router::currentRouteNamed($name);
         }
         
         /**
-         * Get the custom claims.
+         * Get the current route action.
          *
-         * @return array 
+         * @return string|null 
          * @static 
          */ 
-        public static function getCustomClaims()
+        public static function currentRouteAction()
         {
-            return \Tymon\JWTAuth\Factory::getCustomClaims();
+            return \Dingo\Api\Routing\Router::currentRouteAction();
         }
         
         /**
-         * Set the refresh flow flag.
+         * Alias for the "currentRouteUses" method.
          *
-         * @param bool $refreshFlow
-         * @return $this 
+         * @param mixed  string
+         * @return bool 
          * @static 
          */ 
-        public static function setRefreshFlow($refreshFlow = true)
+        public static function uses()
         {
-            return \Tymon\JWTAuth\Factory::setRefreshFlow($refreshFlow);
+            return \Dingo\Api\Routing\Router::uses();
+        }
+        
+        /**
+         * Determine if the current route action matches a given action.
+         *
+         * @param string $action
+         * @return bool 
+         * @static 
+         */ 
+        public static function currentRouteUses($action)
+        {
+            return \Dingo\Api\Routing\Router::currentRouteUses($action);
         }
          
     }
@@ -16287,9 +17073,13 @@ namespace  {
 
     class View extends \Illuminate\Support\Facades\View {}
 
-    class API extends \Dingo\Api\Facade\API {}
+    class JWTAuth extends \Tymon\JWTAuth\Facades\JWTAuth {}
 
     class JWTFactory extends \Tymon\JWTAuth\Facades\JWTFactory {}
+
+    class API extends \Dingo\Api\Facade\API {}
+
+    class ApiRoute extends \Dingo\Api\Facade\Route {}
  
 }
 

@@ -39,6 +39,6 @@ class ImportHKBusInfo extends Command
     public function handle()
     {
         //
-        DB::unprepared(file_get_contents("database/migrations/kmb_businfo.sql"));
+//        DB::unprepared(file_get_contents("database/migrations/larabbs_2019-01-04.sql"));
     }
 }
