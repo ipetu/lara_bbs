@@ -15,5 +15,6 @@ use Illuminate\Http\Request;
 $api = app('Dingo\Api\Routing\Router');
 
 $api->version('v1', function ($api) {
-    $api->get('/hkbus', '\App\Http\Controllers\Api\HKBusRouteController@index');
+    $api->get('/hkbus/{page}', '\App\Http\Controllers\Api\HKBusRouteController@index');
+    $api->get('/hkbus/detail/{busId}', '\App\Http\Controllers\Api\HKBusRouteController@busDetail');
 });

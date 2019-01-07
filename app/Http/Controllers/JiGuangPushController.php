@@ -25,7 +25,7 @@ class JiGuangPushController extends Controller
             $cid = $push->getCid();
             $response = $push->setCid($cid['body']['cidlist'][0])
             ->setPlatform(array('ios','android'))
-            ->addAlias(array('6344','6327'))
+            ->addAlias(array('6375'))
             ->iosNotification('Hello ios',array(
                 'sound'=>'sound',
                 'badge'=>'+1',
@@ -33,7 +33,14 @@ class JiGuangPushController extends Controller
                     'key'=>'value',
                     'jiguang'
                 )
-            ))
+            )) ->androidNotification('6375 Hello Android', array(
+                    'title' => 'hello jpush',
+                    // 'builder_id' => 2,
+                    'extras' => array(
+                        'key' => 'value',
+                        'jiguang'
+                    ),
+                ))
             ->message('message content',array(
                 'title'=>'hello push',
                 'extras'=>array(

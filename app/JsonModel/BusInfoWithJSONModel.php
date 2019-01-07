@@ -114,6 +114,8 @@ class BusInfoWithBodyJSONModel{
         $this->curCount = $curCount;
     }
 
+
+
     /**
      * @return mixed
      */

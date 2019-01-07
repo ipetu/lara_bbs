@@ -49,15 +49,16 @@ class YiYuanApiController extends Controller
 
     public function saveDetailApi()
     {
-        $moreBusInfoItems = Morebusinfo::paginate(1)->items();
+        $moreBusInfoItems = Morebusinfo::paginate(20)->items();
         $content = '';
+//        return response($moreBusInfoItems);
         foreach ($moreBusInfoItems as $item) {
             $bound = 0;
             $busId = $item->busId;
             $res = $this->feachYIYuanRouteDetailApi($busId);
             $content = $res->getBody()->getContents();
             Log::info($content);
-            return response($content);
+//            return response($content);
             $busDetailInfoJSONModel = json_decode($content);
             $resCode = $busDetailInfoJSONModel->showapi_res_code;
             $showApiResBody = $busDetailInfoJSONModel->showapi_res_body;

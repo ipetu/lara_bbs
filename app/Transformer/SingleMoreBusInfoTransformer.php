@@ -12,12 +12,8 @@ namespace App\Transformer;
 use App\models\Morebusinfo;
 use League\Fractal\TransformerAbstract;
 
-class MoreBusInfoTransformer extends TransformerAbstract
+class SingleMoreBusInfoTransformer extends TransformerAbstract
 {
-    protected $availableIncludes = [
-        'busInfoDetail'
-    ];
-
     public function transform(Morebusinfo $morebusinfo)
     {
         return [
@@ -25,11 +21,5 @@ class MoreBusInfoTransformer extends TransformerAbstract
             'busLineName' => $morebusinfo->busLineName,
             'busLineTypeName'=>$morebusinfo->busLineTypeName
         ];
-//        return $morebusinfo->attributesToArray();
-    }
-
-    public function includeBusInfoDetail(Morebusinfo $morebusinfo){
-        $busInfoDetail = $morebusinfo->busInfoDetail;
-        return $this->item($busInfoDetail,new MoreBusDetailInfoTransformer());
     }
 }
