@@ -19,7 +19,7 @@ class HKBusRouteController extends Controller
     }
 
     public function index(){
-        $moreBusInfo = Morebusinfo::paginate(20)->getCollection();
+        $moreBusInfo = Morebusinfo::paginate(10)->getCollection();
         return $this->response->collection($moreBusInfo,new SingleMoreBusInfoTransformer());
     }
 

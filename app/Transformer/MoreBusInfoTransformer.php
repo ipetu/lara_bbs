@@ -26,17 +26,32 @@ class MoreBusInfoTransformer extends TransformerAbstract
 
     public function transform(Morebusinfo $morebusinfo)
     {
+        $detailRouteArray = $this->busInfoDetailFuction($morebusinfo->busInfoDetail);
+        $busInfoSingleDetail = $morebusinfo->busInfoDetail[0];
+
         return [
             'busId' => $morebusinfo->busId,
             'busLineName' => $morebusinfo->busLineName,
             'busLineTypeName'=>$morebusinfo->busLineTypeName,
-            'detail'=>$morebusinfo->busInfoDetail
+            'lineTitle'=>$busInfoSingleDetail->lineTitle,
+            'lineSiteCount'=>$busInfoSingleDetail->lineSiteCount,
+            'cityEngName'=>$busInfoSingleDetail->cityEngName,
+            'cityName'=>$busInfoSingleDetail->cityName,
+            'lineName'=>$busInfoSingleDetail->lineName,
+            'company'=>$busInfoSingleDetail->company,
+            'lineTypeName'=>$busInfoSingleDetail->lineTypeName,
+            'proName'=>$busInfoSingleDetail->proName,
+            'siteTitleName'=>$busInfoSingleDetail->siteTitleName,
+            'detail'=>$detailRouteArray,
         ];
-//        return $morebusinfo->attributesToArray();
     }
 
-//    public function includeBusInfoDetail(Morebusinfo $morebusinfo){
-//        $busInfoDetail = $morebusinfo->busInfoDetail;
-//        return $this->collection($busInfoDetail,new MoreBusDetailInfoTransformer());
-//    }
+
+    public function busInfoDetailFuction($busInfoDetail){
+        $array = [];
+        foreach ($busInfoDetail as $item){
+            $array[count($array)] = (new MoreBusDetailInfoTransformer)->transform($item);
+        }
+        return $array;
+    }
 }
